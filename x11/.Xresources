@@ -1,0 +1,32 @@
+Xcursor.theme: 
+Xcursor.size: 24
+*.alpha:0.8
+*.background: black
+
+
+! ------------------------------------------------------------------------------
+! URxvt
+! ------------------------------------------------------------------------------
+*.cursorColor: green
+URxvt*saveline: 15000
+urxvt.termName: xterm-256color
+URxvt*iso14755: false
+URxvt*depth: 32
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+URxvt.font: xft: xos4 Terminus:pixelsize=16:antialias=true:autohint=true
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.m-c: perl:clipboard:copy
+URxvt.keysym.m-v: perl:clipboard:paste
+URxvt.urlLauncher: exo-open
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
+URxvt.geometry: 90x30
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 16
+URxvt.tabbed.tab-fg: 15
+URxvt.tabbed.tab-bg: 4
