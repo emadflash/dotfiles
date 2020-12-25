@@ -1,18 +1,13 @@
 #!/usr/bin/sh
-alias vi='vim'
-alias iv='vim'
-alias ci='vim'
-alias rc="vim ~/.bashrc"
+alias vi='nvim'
+alias vim='nvim'
 alias r="source ~/.bashrc"
 alias rm="rm -iv"
 alias mv="mv -iv"
-alias grep="grep --color=auto"
 alias df="df -h"
 
 #ls common alias
 alias \
-	sl="ls" \
- 	ls='ls --color=auto --group-directories-first' \
  	l='ls -lAFh'  \
  	la='ls -lFh' \
  	lr='ls -tRFh' \
@@ -22,13 +17,6 @@ alias \
  	lS='ls -1FSsh' \
  	lart='ls -1Fcart' \
  	lrt='ls -1Fcrt'
-
-#config files
-alias \
-	vrc="vim ~/.vimrc" \
-	xrc="vim ~/.xmonad/xmonad.hs"
-
-alias tsm="transmission-remote -l"
 
 alias cd..="cd .."
 alias csb="cd /mnt/usb"
