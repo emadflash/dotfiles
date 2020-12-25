@@ -1,1 +1,6 @@
 __pycache__/
+
+.netrwhist
+node_modules/
+plugins/
+package-lock.json
