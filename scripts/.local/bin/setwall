@@ -9,7 +9,7 @@ notify()
 	esac
 }
 
-[ -f "$1" ] && cp "$1" "$HOME/.config/wall.png" && notify -e  "wallpaper changed to $1"
+[ -f "$1" ] && cp -f "$1" "$HOME/.config/wall.png" && notify -e "wallpaper changed to $1"
 
 [ -d "$1" ] && cp "$(du -a "$1" | awk '{print $2}' | shuf -n1)" "$HOME/.config/wall.png" &&  notify -s "random wallpaper selected";
 
