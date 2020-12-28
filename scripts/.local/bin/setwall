@@ -1,0 +1,17 @@
+#!/bin/sh
+
+notify()
+{
+	case "$1" in
+		-e ) echo "$2";;
+		-s ) notify-send "$2";;
+		 * ) exit 1;
+	esac
+}
+
+[ -f "$1" ] && cp "$1" "$HOME/.config/wall.png" && notify -e  "wallpaper changed to $1"
+
+[ -d "$1" ] && cp "$(du -a "$1" | awk '{print $2}' | shuf -n1)" "$HOME/.config/wall.png" &&  notify -s "random wallpaper selected";
+
+xwallpaper --zoom "$HOME/.config/wall.png" || echo "$0: must have a wall.png in $XDG_CONFIG_HOME" >&2
+#nitrogen --set-auto "$HOME/.config/wall.png" || echo "$0: must have a wall.png in $XDG_CONFIG_HOME" >&2
