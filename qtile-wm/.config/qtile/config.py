@@ -2,11 +2,10 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Screen
-from libqtile.lazy import lazy
 from libqtile.dgroups import simple_key_binder
-from libqtile import hook
+from libqtile.lazy import lazy
 
 # from DiskU import DiskU
 
@@ -393,6 +392,8 @@ focus_on_window_activation = "smart"
 def func(client):
     if client.name == "Mozilla Firefox":
         client.togroup("WEB")
+    elif client.name == "Discord":
+        client.togroup("CHAT")
 
 
 # window manager name
