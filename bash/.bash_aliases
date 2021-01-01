@@ -8,6 +8,7 @@ alias df="df -h"
 
 #ls common alias
 alias \
+	ls='ls --color=auto' \
  	l='ls -lAFh'  \
  	la='ls -lFh' \
  	lr='ls -tRFh' \

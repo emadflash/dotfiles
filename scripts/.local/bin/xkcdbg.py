@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env python
 """
 sets wallpaper from xkcd, existential comics
 """
@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 
 GAP = 25
 TEMP_PATH = "/tmp"
-TEMP_FILE = "randomBG.png"
+TEMP_FILE = "tmp-xkcdbg.png"
 
 # Dict[name:random_url]
 # store comic urls here !!!
