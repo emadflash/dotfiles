@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+import argparse
+import sys
+from pathlib import Path
+
+from sclib import Playlist, SoundcloudAPI, Track
+
+# Create the parser
+parser = argparse.ArgumentParser(description="Download playlist from soundcloud")
+
+# Add arguments
+parser.add_argument("playlist", type=str, help="playlist url")
+
+# parse args
+args = parser.parse_args()
+
+# soundcloudApi stuff
+api = SoundcloudAPI()
+playlist = api.resolve(args.playlist)
+
+assert type(playlist) is Playlist, "Not a Playlist"
+print("[*] fetching playlist %s" % playlist.title)
+
+path = Path(".") / playlist.title
+if not path.is_dir():
+    print("[*] Created playlist directory")
+    path.mkdir()
+
+# start fetching
+tracks_total = len(playlist.tracks)
+tracks_downloaded = 0
+tracks_failed = 0
+tracks_in_local = 0
+for track in playlist:
+    filename = path / f"{track.artist} - {track.title}.mp3"
+    if filename.is_file():
+        tracks_in_local += 1
+        continue
+    try:
+        with open(filename.resolve(), "wb+") as fp:
+            print("[+] downloading %s !" % track.title)
+            track.write_mp3_to(fp)
+            tracks_downloaded += 1
+    except FileNotFoundError:
+        print("[+] Unable to download %s" % track.title)
+        tracks_failed += 1
+        continue
+
+print(
+    "[*] Downloaded (%d/%d) tracks from %s"
+    % (tracks_downloaded, tracks_total, playlist.title)
+)
+print(
+    "[*] Failed (%d/%d) tracks from %s" % (tracks_failed, tracks_total, playlist.title)
+)
+print(
+    "[*] Already in local directory (%d/%d) tracks from %s"
+    % (tracks_in_local, tracks_total, playlist.title)
+)
