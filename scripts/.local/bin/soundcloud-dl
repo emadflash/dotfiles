@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+"""
+downloads playlist from soundcloud
+dependencies: 
+    soundcloud-lib
+Usage:
+    soundcloud-dl <playlist-url>
+"""
 
 import argparse
 import sys
