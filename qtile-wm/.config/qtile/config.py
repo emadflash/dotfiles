@@ -18,7 +18,7 @@ keys = [
     Key([mod], "j", lazy.layout.down(), desc="Move focus down in stack pane"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up in stack pane"),
     ##################################
-    # Xmonad Tall
+    # Monad Tall
     ##################################
     Key([mod], "h", lazy.layout.grow()),
     Key([mod], "l", lazy.layout.shrink()),
@@ -72,7 +72,7 @@ groups = [
 ]
 group_names = [
     ("TERM", {"layout": "MonadTall"}),
-    ("VIM", {"layout": "MonadTall"}),
+    ("VIM", {"layout": "Max"}),
     ("TEST", {"layout": "MonadTall"}),
     ("ORG", {"layout": "MonadWide"}),
     ("CHAT", {"layout": "MonadWide"}),
@@ -119,7 +119,7 @@ init_layout_theme = {
 }
 
 layouts = [
-    layout.Max(),
+    layout.Max(**init_layout_theme, name="Max"),
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),

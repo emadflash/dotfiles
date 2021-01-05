@@ -34,7 +34,7 @@ alias \
 alias \
 	pac="sudo pacman" \
 	calcurse="calcurse -C ~/.config/calcurse -D ~/.config/calcurse" \
-	tmux="tmux -f ~/.config/tmux/tmux.conf"
+	#tmux="tmux -f ~/.config/tmux/tmux.conf"
 
 alias yt="youtube-dl"
 alias ytm="youtube-dl --extract-audio --audio-format mp3"
