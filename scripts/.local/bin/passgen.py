@@ -23,7 +23,7 @@ if __name__ == "__main__":
     bits_hex = hex(bits)[2:]
     
     if len(sys.argv) > 2:
-        print("Usage: %s <k_symbols>".format(sys.argv[0]))
+        print("Usage: %s <k_symbols>" %(sys.argv[0]))
     elif len(sys.argv) == 1:
         print(salt(string=bits_hex, k=K))
     elif len(sys.argv[1]) is not None:
