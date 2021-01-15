@@ -18,7 +18,6 @@ export QT_QPA_PLATFORMTHEME=gtk2
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export SCRIPT_DIR="$HOME/.scripts"
 export ZDOTDIR="$HOME/.config/zsh"
-export PASSWORD_STORE_DIR="$HOME/.config/password-store"
 export LESSHISTFILE="/dev/null"
 export MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql_history"
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter

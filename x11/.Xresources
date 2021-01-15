@@ -16,7 +16,7 @@ URxvt*scrollBar: false
 URxvt*scrollBar_right: false
 URxvt*internalBorder: 0
 URxvt*externalBorder: 0
-URxvt.font: xft: xos4 Terminus:pixelsize=16:antialias=true:autohint=true
+URxvt.font: xft: Hack:pixelsize=15:antialias=true:autohint=true
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
