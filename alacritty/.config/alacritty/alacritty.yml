@@ -1,0 +1,26 @@
+font:
+  normal:
+    family: Ubuntu Mono
+    style: Regular
+
+  bold:
+    family: Ubuntu Mono
+    style: Bold
+
+  italic:
+    family: Ubuntu Mono
+    style: Italic
+
+  bold_italic:
+    family: Ubuntu Mono
+    style: Bold Italic
+
+  size: 14
+
+colors:   
+  primary:     
+    background: '0x000000'     
+    foreground: '0xffffff'
+  selection:     
+    text: '0xffffff'     
+    background: '0xFF1493'
