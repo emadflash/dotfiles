@@ -172,7 +172,7 @@ nnoremap =g :G status<cr>
 nnoremap =c :Gcommit<cr>
 
 "-----------------Airline-------------------------
-let g:airline_theme='serene'
+let g:airline_theme='base16_default'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
@@ -192,20 +192,25 @@ nnoremap <c-b> :CtrlPBuffer<cr>
 
 "-----------------Autocommands--------------------
 ""cpp
-autocmd FileType cpp nnoremap <buffer> ,c :!clear && g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o a.out && ./.a.out<CR>
-autocmd FileType c nnoremap <buffer> ,c :!clear && gcc % && ./a.out<CR>
+autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out<CR>
+autocmd FileType cpp nnoremap <buffer> ,i :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out ;
+			\ echo "INPUT: " ;
+			\ while read line; do echo -e "\t$line"; done < input.txt ;
+			\ echo "OUPUT:" ;
+			\ /tmp/a.out < input.txt > /tmp/output.txt ;
+			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
+autocmd FileType c nnoremap <buffer> ,c :!gcc % -o /tmp/a.out && /tmp/a.out<CR>
 ""python3
-autocmd FileType python nnoremap <buffer> ,p :!python3 %<CR>
+autocmd FileType python nnoremap <buffer> ,p :! python3 %<CR>
+autocmd FileType python nnoremap <buffer> ,i :!
+			\ echo "INPUT: " ;
+			\ while read line; do echo -e "\t$line"; done < input.txt ;
+			\ echo "OUPUT:" ;
+			\ python3 % < input.txt > /tmp/output.txt ;
+			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
 autocmd FileType python nnoremap <buffer> ,m :!python3 -m radon mi % -s<CR>
 autocmd FileType python nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
 
-
-"autocmd VimEnter,BufNewFile,BufReadPre * :colorscheme base16-black-metal-venom
-autocmd BufWritePost config.h :!sudo make install
-autocmd BufWritePost *Xresources !xrdb %
-autocmd BufWritePost *sxhkdrc !killall sxhkd; setsid sxhkd &
-autocmd BufWritePost *dunstrc !killall dunst; setsid dunst &
-autocmd BufWritePost dwmstatus !killall dwmstatus; setsid dwmstatus &
 
 "-----------------Temaplates----------------------
 "autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh
@@ -217,7 +222,7 @@ autocmd BufWritePost dwmstatus !killall dwmstatus; setsid dwmstatus &
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'isort'],
+\ '*': ['remove_trailing_lines',],
 \ 'python': ['black', 'isort'],
 \}
 let g:ale_fix_on_save = 1

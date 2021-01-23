@@ -43,8 +43,6 @@ alias ytm="youtube-dl --extract-audio --audio-format mp3"
 #date commands
 alias daysleft='echo "There are $(($(date +%j -d"Dec 31, $(date +%Y)")-$(date +%j))) left in year $(date +%Y)."'
 alias weeknum='date +%V'
-alias cal='task calendar'
-
 
 
 # git

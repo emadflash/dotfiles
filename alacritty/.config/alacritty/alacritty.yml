@@ -1,18 +1,18 @@
 font:
   normal:
-    family: Ubuntu Mono
+    family: Inconsolata
     style: Regular
 
   bold:
-    family: Ubuntu Mono
+    family: Inconsolata
     style: Bold
 
   italic:
-    family: Ubuntu Mono
+    family: Inconsolata
     style: Italic
 
   bold_italic:
-    family: Ubuntu Mono
+    family: Inconsolata
     style: Bold Italic
 
   size: 14

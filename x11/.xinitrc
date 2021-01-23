@@ -3,4 +3,4 @@ setwall &
 xrdb merge ~/.Xresources &
 dunst &
 nm-applet &
-exec qtile
+exec xmonad

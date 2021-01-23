@@ -1,17 +1,11 @@
-import os
-import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Screen
-from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 
-# from DiskU import DiskU
-
 mod = "mod4"
-# terminal = guess_terminal()
-terminal = "st"
+terminal = "alacritty"
 
 keys = [
     # Switch between windows in current stack pane
@@ -109,13 +103,15 @@ colorRed = "#f7a16e"
 colorRedAlt = "#e0105f"
 colorGreen = "#66ff66"
 colorGreenAlt = "#558965"
+colorGreenAlt2 = "#42a300"
+colorBlueAlt2 = "#05d9e8"
 
 
 init_layout_theme = {
     "border_width": 3,
     "margin": 0,
-    "border_focus": "#42a300",
-    "border_normal": "#333333",
+    "border_focus": colorGreenAlt2,
+    "border_normal": colorGrayAlt3,
 }
 
 layouts = [
@@ -142,30 +138,13 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-# TODO colors dict
-GREY = "#b0acb0"
-DARK_GREY = "#333333"
-GREEN = "#7FFF00"
-DARK_GREEN = "#42a300"
-BLACK = "#080808"
-DARK_BLUE = "#01012b"
-BLUE = "#05d9e8"
-CYAN = "#3955c4"
-GRAY4 = "#eeeeee"
-BLACK2 = "#222222"
-
-colors = [
-    [colorBlack, colorWhiteAlt],  # groups
-    [CYAN, GRAY4],  # even
-    [BLACK2, CYAN],  # odd
-]
 
 widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
-    background=colors[0][0],
-    foreground=colors[1][1],
+    background=colorBlack,
+    foreground=colorWhite,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -173,57 +152,6 @@ prompt = ": "
 
 screens = [
     Screen(
-        # top=bar.Bar(
-        #    [
-        #        widget.TextBox(
-        #            text = 'LAYOUT',
-        #            background = colorWhiteAlt,
-        #            foreground = colorBlack,
-        #            ),
-        #        widget.CurrentLayout(
-        #            foreground = colorBlue,
-        #            ),
-        #
-        #        widget.TextBox(
-        #            text = 'VOL',
-        #            background = colorWhiteAlt,
-        #            foreground = colorBlack,
-        #            ),
-        #
-        #        widget.Volume(
-        #            ),
-        #
-        #        widget.Sep(
-        #             linewidth = 1,
-        #             size_percent = 60,
-        #             background = colorBlack,
-        #             foreground = colorBlack,
-        #             ),
-        #
-        #        widget.TextBox(
-        #            text = 'BAT',
-        #            background = colorWhiteAlt,
-        #            foreground = colorBlack,
-        #            ),
-        #
-        #        widget.Battery(
-        #            background=colorBlack,
-        #            foreground = colorRed,
-        #            format="{percent:2.0%} {hour:d}h{min:02d}"
-        #            ),
-        #
-        #        widget.TextBox(
-        #            text = 'HDD',
-        #            background = colorWhiteAlt,
-        #            foreground = colorBlack,
-        #            ),
-        #
-        #        #DiskU(
-        #        #    format = '{DiskPercent}',
-        #        #    space_type = 'used',
-        #        #    ),
-        #    ],
-        #    20),
         bottom=bar.Bar(
             [
                 widget.Image(
@@ -245,9 +173,9 @@ screens = [
                     padding_y=5,
                     padding_x=5,
                     borderwidth=5,
-                    border_color=colors[0][1],
+                    border_color=colorWhiteAlt,
                     rounded=True,
-                    active=BLUE,
+                    active=colorBlueAlt2,
                     inactive=colorGray,
                     block_highlight_text_color=colorBlack,
                     highlight_color=colorBlue,
@@ -259,30 +187,6 @@ screens = [
                     # other_current_screen_border = colors[0],
                     # other_screen_border = colors[0],
                 ),
-                #                widget.TextBox(
-                #                   text=u'\u25E2',
-                #                   fontsize=71,
-                #                   padding=-9,
-                #                   background = colors[2][0],
-                #                   foreground = colors[2][1],
-                #                   ),
-                #
-                #                widget.CurrentLayout(
-                #                    background = colors[2][1],
-                #                    ),
-                #
-                #                widget.Prompt(
-                #                    prompt = prompt,
-                #                    background = colors[0][1],
-                #                    ),
-                #
-                #                 widget.TextBox(
-                #                    text="◤",
-                #                    fontsize=71,
-                #                    padding=-9,
-                #                    background = colors[2][0],
-                #                    foreground = colors[2][1],
-                #                    ),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
