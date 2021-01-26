@@ -47,8 +47,9 @@ alias weeknum='date +%V'
 
 # git
 alias \
-	gs="git status"
-	gl="git log"
-	gll="git log --all"
-	gb="git branch"
-	gc="git checkout"
+	gs="git status" \
+	gl="git log" \
+	gll="git log --all" \
+	gb="git branch" \
+	gc="git checkout" \
+	gst="git stash" \
