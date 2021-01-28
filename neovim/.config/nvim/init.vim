@@ -160,6 +160,10 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 omap <leader><tab> <plug>(fzf-maps-o)
 xmap <leader><tab> <plug>(fzf-maps-x)
 
+" Splits
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>ws :split<CR>
+
 "MaximizeToggle
 nnoremap <silent><C-o> :MaximizerToggle<CR>
 vnoremap <silent><C-o> :MaximizerToggle<CR>gv
