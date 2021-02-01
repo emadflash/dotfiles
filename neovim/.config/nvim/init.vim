@@ -134,11 +134,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
-nnoremap <c-b> :CtrlPBuffer<cr>
 
 
 " cpp
-autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out<CR>
+autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out<cr>
 autocmd FileType cpp nnoremap <buffer> ,i :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out ;
 			\ echo "INPUT: " ;
 			\ while read line; do echo -e "\t$line"; done < input.txt ;
@@ -148,7 +147,7 @@ autocmd FileType cpp nnoremap <buffer> ,i :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wal
 autocmd FileType c nnoremap <buffer> ,c :!gcc % -o /tmp/a.out && /tmp/a.out<CR>
 
 " python3
-autocmd FileType python nnoremap <buffer> ,p :! python3 %<CR>
+autocmd FileType python nnoremap <buffer> ,c :! python3 %<cr>
 autocmd FileType python nnoremap <buffer> ,i :!
 			\ echo "INPUT: " ;
 			\ while read line; do echo -e "\t$line"; done < input.txt ;
@@ -158,13 +157,6 @@ autocmd FileType python nnoremap <buffer> ,i :!
 autocmd FileType python nnoremap <buffer> ,m :!python3 -m radon mi % -s<CR>
 autocmd FileType python nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
 
-
-"-----------------Temaplates----------------------
-"autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh
-"autocmd BufNewFile *.h 0r ~/.config/nvim/templates/skeleton.h
-"autocmd BufNewFile *.pl 0r ~/.config/nvim/templates/skeleton.pl
-"autocmd BufNewFile *.cpp 0r ~/.config/nvim/templates/skeleton.cpp
-"
 
 " ale
 let g:ale_linters = {'python': ['flake8']}

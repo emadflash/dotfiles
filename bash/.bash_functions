@@ -2,29 +2,6 @@
 
 FZF_LOCAL_OPTS="--layout=reverse --height 55% --no-info"
 
-tdn() { 
-	transmission-daemon && notify-send "transmission-daemon started ..."
-}
-
-tdf() {
-       	sudo killall transmission-daemon && notify-send "transmission-daemon killed ..."
-}
-
-mkc()
-{
-	mkdir -p "$1"; cd "$1"
-}
-
-syi()
-{
-	echo  "$*" | festival --tts 
-}
-
-sayit()
-{
-	espeak -v en-scottish -g 5 -p 13 -s 0.7 "$*"
-}
-
 # Get the display's resolution.
 if type -fP xwininfo &> /dev/null; then
 	getres(){ #: Two viable methods for fetching the display resolution.
@@ -67,9 +44,8 @@ topmem(){
 
 
 if type -fP fzf &> /dev/null ; then
-
 	se() {
-		  path=$(du -a ~/.config/ ~/.local/bin/ | awk '{print $2}' | fzf ${FZF_LOCAL_OPTS} ) &&
+		  path=$(du -a ~/fun/ ~/.local/bin/ | awk '!/.git/ && !/venv/ {print $2}' | fzf ${FZF_LOCAL_OPTS} ) &&
 		  $EDITOR "$path"
 	}
 
@@ -87,9 +63,4 @@ if type -fP fzf &> /dev/null ; then
 		  pack=$(pacman --quiet -Q | fzf ${FZF_LOCAL_OPTS} --prompt 'pkg-uninstall : ' --preview 'pacman -Qi {}' --preview-window=wrap --preview-window=hidden --no-info) && sudo pacman --noconfirm -Rns "$pack" &&
           echo "uninst   : $pack ,  $(date)" >> "$XDG_CACHE_HOME"/pacman-hsts
 	}
-
-	mnp() {
-		  page=$(man -k . | awk '{print $1}' | fzf ${FZF_LOCAL_OPTS} --prompt 'man : ') && man "$page"
-  	}
-
 fi

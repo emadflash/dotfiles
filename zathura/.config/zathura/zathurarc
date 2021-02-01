@@ -12,5 +12,5 @@ map za recolor
 map p print
 
 " Colors
-set default-bg              "#020202"
-set default-fg              "#9d9d9d"
+set default-bg              "#1c1c1c"
+set default-fg              "#ffffff"
