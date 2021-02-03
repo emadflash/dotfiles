@@ -4,10 +4,14 @@ declare -a pkg
 pkg=("firefox" "pcmanfm" "ttf-inconsolata" "xmonad" "xmobar" "xarchiver" )
 	
 declare -A link_map 
-link_map['neovim']="$HOME/.config/nvim/"
+link_map['nvim']="$HOME/.config/"
 link_map['bash']="$HOME/"
 link_map['tmux']="$HOME/"
-link_map['alacritty']="$HOME/.config/alacritty/"
+link_map['alacritty']="$HOME/.config/"
+link_map['zathura']="$HOME/.config/"
+link_map['qtile']="$HOME/.config/"
+link_map['scripts']="$HOME/.local/bin/"
+link_map['x11']="$HOME/"
 
 pkg_install() {
 	for i in ${!pkg[@]}; do
@@ -15,11 +19,22 @@ pkg_install() {
 	done
 }	
 
+_backup() {
+	[ ! -d "$HOME/.backup" ] && mkdir "$HOME/.backup" || mv "$1" "$HOME/.backup"
+}
+
 symlink_it() {
 	for _conf in *; do 
 		if [[ ! -z "$_conf" ]] && [[ ${link_map["$_conf"]} ]]; then
-			echo "$_conf" ${link_map["$_conf"]}
-			#ln -s ./"$_conf" ${link_map["$key"]}
+			if [[ ${link_map["$_conf"]} == "$HOME/" ]] || [[ ${link_map["$_conf"]} == "$HOME/.local/bin/" ]]; then
+				for i in $(find $_conf -maxdepth 1 -type f); do
+					ln -sfv $(readlink -f "$i") ${link_map["$_conf"]} || _backup "$HOME/$i"
+				done
+			else
+				ln -sffv "$PWD/$_conf/" ${link_map["$_conf"]}
+			fi
 		fi
 	done
 }
+
+symlink_it && echo "Finshed symlinking ..!"
