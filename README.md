@@ -1,2 +1,2 @@
 To install:
-	stow *
+	$ ./install.sh
