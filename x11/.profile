@@ -1,6 +1,7 @@
 #
 # ~/.profile
 #
+
 export PATH="$PATH:$HOME/.local/bin/"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -28,6 +29,12 @@ export FZF_DEFAULT_OPTS='
 --color=16
 --bind 'ctrl-t:toggle-preview'
 '
+
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
 
 # tty 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
