@@ -1,7 +1,3 @@
-#!/usr/bin/sh
-
-FZF_LOCAL_OPTS="--layout=reverse --height 55% --no-info"
-
 # Get the display's resolution.
 if type -fP xwininfo &> /dev/null; then
 	getres(){ #: Two viable methods for fetching the display resolution.
@@ -32,35 +28,33 @@ if type -fP sensors &> /dev/null; then
 fi
 
 topmem(){ 
-		awk "
-			{
-				M=\$1/1024
-				if(NR<50 && M>1){
-					printf(\"%'7dM %s\\n\", M, \$2)
-				}
+	awk "
+		{
+			M=\$1/1024
+			if(NR<50 && M>1){
+			printf(\"%'7dM %s\\n\", M, \$2)
 			}
+		}
 		" <<< "$(\ps ax -o rss= -o comm= --sort -rss)"
-	}
+}
 
 
 if type -fP fzf &> /dev/null ; then
-	se() {
-		  path=$(du -a ~/fun/ ~/.local/bin/ | awk '!/.git/ && !/venv/ {print $2}' | fzf ${FZF_LOCAL_OPTS} ) &&
-		  $EDITOR "$path"
+	se(){
+		file=$(du -a ~/fun/ ~/.local/bin/ | awk '!/.git/ && !/venv/ {print $2}' | fzf) &&
+		$EDITOR "$file"
 	}
 
-	tsa() {
-		  sess=$(tmux ls | fzf ${FZF_LOCAL_OPTS} | awk '{print $1}' | sed 's/://g') && tmux attach -t "$sess";
+	ta(){
+		sess=$(tmux ls | fzf | awk '{print $1}' | sed 's/://g') && tmux attach -t "$sess";
 	}
 
-	pi() {
-		  pack=$(pacman --quiet -Ss | fzf ${FZF_LOCAL_OPTS} --prompt 'pkg-install : ' --preview 'pacman -Si {}' --preview-window=wrap --preview-window=hidden --no-info) &&
-		  sudo pacman --noconfirm -S "$pack" &&
-		  echo "installed: $pack ,  $(date)" >> "$XDG_CACHE_HOME"/pacman-hsts
+	pi(){
+		pkg=$(pacman --quiet -Ss | fzf --prompt 'pkg-install : ' --preview 'pacman -Si {}' --preview-window=wrap --preview-window=hidden --no-info) &&
+		sudo pacman --noconfirm -S "$pkg"
 	}
 
-	pr() {
-		  pack=$(pacman --quiet -Q | fzf ${FZF_LOCAL_OPTS} --prompt 'pkg-uninstall : ' --preview 'pacman -Qi {}' --preview-window=wrap --preview-window=hidden --no-info) && sudo pacman --noconfirm -Rns "$pack" &&
-          echo "uninst   : $pack ,  $(date)" >> "$XDG_CACHE_HOME"/pacman-hsts
+	pr(){
+		pkg=$(pacman --quiet -Q | fzf --prompt 'pkg-uninstall : ' --preview 'pacman -Qi {}' --preview-window=wrap --preview-window=hidden --no-info) && sudo pacman --noconfirm -Rns "$pkg"
 	}
 fi
