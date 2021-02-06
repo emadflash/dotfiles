@@ -10,6 +10,7 @@ link_map['tmux']="$HOME/"
 link_map['alacritty']="$HOME/.config/"
 link_map['zathura']="$HOME/.config/"
 link_map['qtile']="$HOME/.config/"
+link_map['xmonad']="$HOME/"
 link_map['scripts']="$HOME/.local/bin/"
 link_map['x11']="$HOME/"
 
