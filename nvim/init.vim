@@ -167,7 +167,7 @@ autocmd FileType python nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
 
 
 " ale
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {'python': ['flake8'], 'c': ['cpplint']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines',],

@@ -1,3 +1,7 @@
+cfd(){
+	mv ~/Downloads/$(ls -t ~/Downloads/ | head -n1) ./
+}
+
 # Get the display's resolution.
 if type -fP xwininfo &> /dev/null; then
 	getres(){ #: Two viable methods for fetching the display resolution.
