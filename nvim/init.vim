@@ -2,6 +2,7 @@ set relativenumber
 
 let mapleader="\<Space>"
 set background=dark
+colorscheme scheme
 filetype off                  
 
 if has("folding")
@@ -167,7 +168,7 @@ autocmd FileType python nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
 
 
 " ale
-let g:ale_linters = {'python': ['flake8'], 'c': ['cpplint']}
+let g:ale_linters = {'python': ['flake8'], 'c': ['cpplint'], 'cpp' : ['cpplint']}
 let g:ale_fixers = {'python': ['black']}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines',],
@@ -181,11 +182,3 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Make the vertical split column blend with the line number
-" column.
-highlight LineNr cterm=NONE ctermbg=235 ctermfg=249
-if v:version >= 800
-  highlight! link CursorLineNr LineNr
-endif
-highlight VertSplit cterm=NONE ctermbg=Black ctermfg=Green
