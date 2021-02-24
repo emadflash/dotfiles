@@ -13,7 +13,6 @@ export BROWSER="/usr/bin/firefox"
 export READER="/usr/bin/zathura"
 export FILE="/usr/bin/vifm"
 export VIDEO="/usr/bin/mpv"
-export WGETRC="$HOME/.config/wget/wgetrc"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME=gtk2
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
