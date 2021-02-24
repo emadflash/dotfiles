@@ -181,3 +181,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Make the vertical split column blend with the line number
+" column.
+highlight LineNr cterm=NONE ctermbg=235 ctermfg=249
+if v:version >= 800
+  highlight! link CursorLineNr LineNr
+endif
+highlight VertSplit cterm=NONE ctermbg=Black ctermfg=Green
