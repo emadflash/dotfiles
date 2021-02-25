@@ -7,13 +7,15 @@ import pathlib
 import random
 import subprocess
 import time
+import urllib.parse
 
 import requests
 from bs4 import BeautifulSoup
 
 GAP = 25
+SLEEP_REQUEST = 60
 TEMP_PATH = "/tmp"
-TEMP_FILE = "tmp-xkcdbg.png"
+TEMP_FILE = "xkcdbg.png"
 
 # Dict[name:random_url]
 # store comic urls here !!!
@@ -22,18 +24,22 @@ CONFIG = {
     "ext": "https://existentialcomics.com/comic/random",
 }
 
+
+def joinUrl(parent_url, url):
+    return urllib.parse.urljoin(parent_url, url)
+
+
 # download comic xkcd
 def download_xkcd(url):
     result = requests.get(url)
     soup = BeautifulSoup(result.text, "html.parser")
     div = soup.find("div", id="comic")
-    img_url = div.img["src"]
-    result = requests.get("https:" + img_url)
-    img = result.content
-    return img
+    _img_url = div.img["src"]
+    img_url = joinUrl(CONFIG["xkcd"], _img_url)
+    result = requests.get(img_url)
+    return result.content
 
 
-# download comic existential
 # only title with 1-comic strip
 def download_ext(url):
     result = requests.get(url)
@@ -41,18 +47,25 @@ def download_ext(url):
     imgs = soup.findAll("img", class_="comicImg")
     while len(imgs) != 1:
         # loop until you find 1 page comic title
+        time.sleep(60)  # stop hammer the server!
         result = requests.get(url)
         soup = BeautifulSoup(result.text, "html.parser")
         imgs = soup.findAll("img", class_="comicImg")
-    img_url = imgs[0]["src"]
-    result = requests.get("https:" + img_url)
-    img = result.content
-    return img
+    _img_url = imgs[0]["src"]
+    img_url = joinUrl(CONFIG["ext"], _img_url)
+    result = requests.get(img_url)
+    return result.content
+
+
+downloaders = {
+    "xkcd": download_xkcd,
+    "ext": download_ext,
+}
 
 
 # save image to /tmp
 def save_image(img):
-    p = pathlib.Path(f"/{TEMP_PATH}/{TEMP_FILE}")
+    p = pathlib.Path(TEMP_PATH) / TEMP_FILE
     return True if p.write_bytes(img) else False
 
 
@@ -60,27 +73,20 @@ def save_image(img):
 # from CONFIG dict
 def get_random_content():
     waah = random.choice(list(CONFIG.keys()))
-    # TODO rnd_content = lambda key: download_{key}(CONFIG.get(key))
-    # TODO return rnd_content(waah)
-    if waah == "ext":
-        return download_ext(CONFIG.get(waah))
-    elif waah == "xkcd":
-        return download_xkcd(CONFIG.get(waah))
+    return downloaders[waah](CONFIG.get(waah))
 
 
-# set background
-# using xwallpaper
+# set background using xwallpaper
 def set_bg():
     content = get_random_content()
     if save_image(content):
+        print("[*] saved image")
         subprocess.call(["xwallpaper", "--center", TEMP_FILE], cwd=f"/{TEMP_PATH}/")
-
     else:
-        print("ERROR: changing background...")
+        print("[*] error: changing background")
 
 
-# run inside while loop
-def run():
+if __name__ == "__main__":
     while True:
         try:
             set_bg()
@@ -88,7 +94,3 @@ def run():
             print(e.__doc__)
             continue
         time.sleep(GAP * 60)
-
-
-if __name__ == "__main__":
-    run()
