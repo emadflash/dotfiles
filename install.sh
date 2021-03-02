@@ -20,16 +20,12 @@ pkg_install() {
 	done
 }	
 
-_backup() {
-	[ ! -d "$HOME/.backup" ] && mkdir "$HOME/.backup" || mv "$1" "$HOME/.backup"
-}
-
 symlink_it() {
 	for _conf in *; do 
 		if [[ ! -z "$_conf" ]] && [[ ${link_map["$_conf"]} ]]; then
 			if [[ ${link_map["$_conf"]} == "$HOME/" ]] || [[ ${link_map["$_conf"]} == "$HOME/.local/bin/" ]]; then
 				for i in $(find $_conf -maxdepth 1 -type f); do
-					ln -sfv $(readlink -f "$i") ${link_map["$_conf"]} || _backup "$HOME/$i"
+					ln -sfv $(readlink -f "$i") ${link_map["$_conf"]}
 				done
 			else
 				ln -sffv "$PWD/$_conf/" ${link_map["$_conf"]}
