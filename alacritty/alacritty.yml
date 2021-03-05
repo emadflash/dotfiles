@@ -17,19 +17,11 @@ font:
 
   size: 12
 
-colors:   
-  primary:     
-    background: '0x1c1c1c'     
-    foreground: '0xffffff'
-  selection:     
-    text: '0xffffff'     
-    background: '0xFF1493'
-
 # Colors (Solarized Dark)
 colors:
   # Default colors
   primary:
-    background: '#002b36' # base03
+    background: '#00161b' # base03
     foreground: '#839496' # base0
 
   # Cursor colors

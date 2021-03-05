@@ -7,4 +7,8 @@ highlight LineNr cterm=NONE ctermbg=Black ctermfg=Green
 if v:version >= 800
   highlight! link CursorLineNr LineNr
 endif
+
 highlight VertSplit cterm=NONE ctermbg=Black ctermfg=Green
+
+highlight StatusLine cterm=NONE ctermbg=Black ctermfg=Blue
+"highlight StatusLineNC cterm=NONE ctermbg=Black ctermfg=Green
