@@ -148,26 +148,12 @@ autocmd FileType c nnoremap <buffer> ,i :!gcc % -o /tmp/a.out ;
 			\ /tmp/a.out < input.txt > /tmp/output.txt ;
 			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
 
-" python3
-autocmd FileType python nnoremap <buffer> ,c :! python3 %<cr>
-autocmd FileType python nnoremap <buffer> ,i :!
-			\ echo "INPUT: " ;
-			\ while read line; do echo -e "\t$line"; done < input.txt ;
-			\ echo "OUPUT:" ;
-			\ python3 % < input.txt > /tmp/output.txt ;
-			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
-autocmd FileType python nnoremap <buffer> ,m :!python3 -m radon mi % -s<CR>
-autocmd FileType python nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
-
-
 " ale
-let g:ale_linters = {'python': ['flake8'], 'c': ['cpplint'], 'cpp' : ['cpplint']}
-let g:ale_fixers = {'python': ['black']}
+let g:ale_fix_on_save = 0
+let g:ale_linters = {'c': ['cpplint'], 'cpp' : ['cpplint']}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines',],
-\ 'python': ['black', 'isort'],
 \}
-let g:ale_fix_on_save = 1
 
 
 "" GoTo code navigation.
