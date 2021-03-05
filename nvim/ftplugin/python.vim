@@ -1,14 +1,16 @@
 " ale
-let b:ale_linters = {'python': ['flake8']}
-let b:ale_fixers = {
-	\ 'python': ['black', 'isort'],
-	\}
+if has("ALEInfo")
+	let b:ale_linters = {'python': ['flake8']}
+	let b:ale_fixers = {
+		\ 'python': ['black', 'isort'],
+		\}
+endif
 
 
 " excute script with keybind
 " read input from file and then execute program
-nnoremap <buffer> ,c :! python3 %<cr>
-nnoremap <buffer> ,i :!
+nnoremap ,c :! python3 %<cr>
+nnoremap ,i :!
 		\ echo "INPUT: " ;
 		\ while read line; do echo -e "\t$line"; done < input.txt ;
 		\ echo "OUPUT:" ;
