@@ -1,8 +1,10 @@
 " ale
-let b:ale_linters = {'python': ['flake8']}
-let b:ale_fixers = {
-	\ 'python': ['black', 'isort'],
-	\}
+if has("ALEInfo")
+	let b:ale_linters = {'python': ['flake8']}
+	let b:ale_fixers = {
+		\ 'python': ['black', 'isort'],
+		\}
+endif
 
 
 " excute script with keybind
