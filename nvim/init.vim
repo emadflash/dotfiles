@@ -14,8 +14,6 @@ endif
 
 " plugins
 call plug#begin('~/.config/nvim/plugins')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'jceb/vim-orgmode'
 Plug 'kana/vim-textobj-user'
@@ -119,11 +117,6 @@ nnoremap =l :G log<cr>
 nnoremap =g :G status<cr>
 nnoremap =c :Gcommit<cr>
 
-" airline
-let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
 " org
 let g:org_agenda_files = ['~/org/index.org', '~/org/project.org']
 
@@ -138,7 +131,7 @@ let g:ctrlp_map = '<c-p>'
 
 
 " cpp
-autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out<cr>
+autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out && /tmp/a.out<cr>
 autocmd FileType cpp nnoremap <buffer> ,i :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out ;
 			\ echo "INPUT: " ;
 			\ while read line; do echo -e "\t$line"; done < input.txt ;
