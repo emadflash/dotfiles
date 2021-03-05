@@ -9,8 +9,8 @@ endif
 
 " excute script with keybind
 " read input from file and then execute program
-nnoremap ,c :! python3 %<cr>
-nnoremap ,i :!
+nnoremap <buffer> ,c :! python3 %<cr>
+nnoremap <buffer> ,i :!
 		\ echo "INPUT: " ;
 		\ while read line; do echo -e "\t$line"; done < input.txt ;
 		\ echo "OUPUT:" ;
