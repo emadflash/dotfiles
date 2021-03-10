@@ -152,6 +152,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 
+let g:debugg_map = ',d'
 
 " cpp
 autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out && /tmp/a.out<cr>
