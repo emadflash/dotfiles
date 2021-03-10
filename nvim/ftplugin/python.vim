@@ -20,3 +20,6 @@ nnoremap <buffer> ,i :!
 " code analysis bull shit
 nnoremap <buffer> ,m :!python3 -m radon mi % -s<CR>
 nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
+
+" debugging with pdb
+nnoremap <buffer> ,d :vsplit term://bash -c 'python3 %'<cr><c-w>L A
