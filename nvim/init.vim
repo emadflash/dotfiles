@@ -93,10 +93,6 @@ nnoremap Y y$
 " files
 nnoremap <leader>e :Ex .<cr>
 
-" search
-nnoremap <leader>J /
-nnoremap <leader>K ?
-
 " bash like command mode
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
