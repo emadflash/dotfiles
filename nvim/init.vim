@@ -130,15 +130,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:ctrlp_map = '<c-p>'
 
 
-" cpp
-autocmd FileType cpp nnoremap <buffer> ,c :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out && /tmp/a.out<cr>
-autocmd FileType cpp nnoremap <buffer> ,i :!g++ -std=c++1z -D GLIBCXX_DEBUG -Wall -O0 % -o /tmp/a.out ;
-			\ echo "INPUT: " ;
-			\ while read line; do echo -e "\t$line"; done < input.txt ;
-			\ echo "OUPUT:" ;
-			\ /tmp/a.out < input.txt > /tmp/output.txt ;
-			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
-
 " c
 autocmd FileType c nnoremap <buffer> ,c :!gcc % -o /tmp/a.out && /tmp/a.out<CR>
 autocmd FileType c nnoremap <buffer> ,i :!gcc % -o /tmp/a.out ;
