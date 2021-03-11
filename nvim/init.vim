@@ -153,6 +153,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:ctrlp_map = '<c-p>'
 
 let g:debugg_map = ',d'
+let g:compile_map = ',z'
+let g:execute_map = ',x'
 
 " c
 autocmd FileType c nnoremap <buffer> ,c :!gcc % -o /tmp/a.out && /tmp/a.out<CR>
