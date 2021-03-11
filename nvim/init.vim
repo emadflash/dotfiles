@@ -93,10 +93,6 @@ nnoremap Y y$
 " files
 nnoremap <leader>e :Ex .<cr>
 
-" search
-nnoremap <leader>J /
-nnoremap <leader>K ?
-
 " bash like command mode
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
@@ -106,6 +102,33 @@ cnoremap <c-b> <Left>
 " splits
 nnoremap <leader>wv :vsplit<cr>
 nnoremap <leader>ws :split<cr>
+
+" terminal
+" https://www.reddit.com/r/vim/comments/8n5bzs/using_neovim_is_there_a_way_to_display_a_terminal/
+let g:term_buf = 0
+let g:term_win = 0
+function! TermToggle(height)
+    if win_gotoid(g:term_win)
+        hide
+    else
+        botright new
+        exec "resize " . a:height
+        try
+            exec "buffer " . g:term_buf
+        catch
+            call termopen($SHELL, {"detach": 0})
+            let g:term_buf = bufnr("")
+            set signcolumn=no
+        endtry
+        startinsert!
+        let g:term_win = win_getid()
+    endif
+endfunction
+
+nnoremap <A-t> :call TermToggle(12)<CR>
+inoremap <A-t> <Esc>:call TermToggle(12)<CR>
+tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+tnoremap <Esc> <C-\><C-n>
 
 " maximize toggle
 nnoremap <silent><C-o> :MaximizerToggle<cr>
