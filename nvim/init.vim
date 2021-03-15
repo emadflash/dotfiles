@@ -156,15 +156,6 @@ let g:debugg_map = ',d'
 let g:compile_map = ',z'
 let g:execute_map = ',x'
 
-" c
-autocmd FileType c nnoremap <buffer> ,c :!gcc % -o /tmp/a.out && /tmp/a.out<CR>
-autocmd FileType c nnoremap <buffer> ,i :!gcc % -o /tmp/a.out ;
-			\ echo "INPUT: " ;
-			\ while read line; do echo -e "\t$line"; done < input.txt ;
-			\ echo "OUPUT:" ;
-			\ /tmp/a.out < input.txt > /tmp/output.txt ;
-			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<CR>
-
 " ale
 let g:ale_fix_on_save = 0
 let g:ale_linters = {'c': ['cpplint'], 'cpp' : ['cpplint']}
