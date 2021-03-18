@@ -1,2 +1,4 @@
-To install:
-	$ ./install.sh
+## To install
+```sh
+$ ./install.sh
+```
