@@ -15,7 +15,6 @@ endif
 " plugins
 call plug#begin('~/.config/nvim/plugins')
 Plug 'tpope/vim-surround'
-Plug 'jceb/vim-orgmode'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
@@ -103,6 +102,10 @@ cnoremap <c-b> <Left>
 nnoremap <leader>wv :vsplit<cr>
 nnoremap <leader>ws :split<cr>
 
+" replace highlighted text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+
 " terminal
 " https://www.reddit.com/r/vim/comments/8n5bzs/using_neovim_is_there_a_way_to_display_a_terminal/
 let g:term_buf = 0
@@ -139,15 +142,6 @@ nnoremap =s :G<cr>
 nnoremap =l :G log<cr>
 nnoremap =g :G status<cr>
 nnoremap =c :Gcommit<cr>
-
-" org
-let g:org_agenda_files = ['~/org/index.org', '~/org/project.org']
-
-" snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
