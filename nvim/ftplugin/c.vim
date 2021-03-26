@@ -23,7 +23,7 @@ let s:compile_string = s:compiler. ' ' .s:cxx_compiler_flags. s:infile. ' -o' .s
 exec 'nnoremap <buffer> ,c :!' .s:compile_string. ' && ' .s:outfile. '<cr>'
 
 " compile and execute it with args from input file
-exec 'nnoremap <buffer> ,i :!' .s:compile_string. ' && ' .s:outfile. '<cr>'
+exec 'nnoremap <buffer> ,i :!' .s:compile_string. ' && '
 			\ .s:outfile. ' < input.txt <cr>'
 
 " compile inside terminal buffer
