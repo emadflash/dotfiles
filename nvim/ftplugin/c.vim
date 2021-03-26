@@ -1,17 +1,33 @@
-let s:in_file = expand('%:p')
-let s:out_file = expand('%:r') 
-let s:compiler_flags = "-g".
-		\ " -fstack-clash-protection" .
-		\ " -D_FORTIFY_SOURCE=2".
-		\ " -D GLIBCXX_DEBUG".
-		\ " -Wall -O1 "
+let s:infile = expand('%:p')
+let s:outfile = expand('%:p:r') 
+
+if &filetype ==# 'c'
+	let s:cxx_compiler_flags = "-g".
+			\ " -fstack-clash-protection" .
+			\ " -D_FORTIFY_SOURCE=2".
+			\ " -D GLIBCXX_DEBUG".
+			\ " -Wall -O1 "
+	let s:compiler = "gcc"
+elseif &filetype ==# 'cpp'
+	let s:cxx_compiler_flags = "-g".
+			\ " -std=c++1z".
+			\ " -D GLIBCXX_DEBUG".
+			\ " -Wall -O1 "
+	let s:compiler = "g++"
+endif
+
+let s:compile_string = s:compiler. ' ' .s:cxx_compiler_flags. s:infile. ' -o' .s:outfile
 
 
-exec 'nnoremap <buffer> ,c :!gcc '.s:compile_flags. s:in_file. ' -o /tmp/a.out && /tmp/a.out<cr>'
+" compile and execute it directly
+exec 'nnoremap <buffer> ,c :!' .s:compile_string. ' && ' .s:outfile. '<cr>'
 
-exec 'nnoremap <buffer> ,i :!gcc '.s:compile_flags. s:in_file. ' -o /tmp/a.out;
-			\ echo "INPUT: " ;
-			\ while read line; do echo -e "\t$line"; done < input.txt ;
-			\ echo "OUPUT:" ;
-			\ /tmp/a.out < input.txt > /tmp/output.txt ;
-			\ while read line; do echo -e "\t$line"; done < /tmp/output.txt<cr>'
+" compile and execute it with args from input file
+exec 'nnoremap <buffer> ,i :!' .s:compile_string. ' && ' .s:outfile. '<cr>'
+			\ .s:outfile. ' < input.txt <cr>'
+
+" compile inside terminal buffer
+exec 'nnoremap <buffer> '.g:compile_map.' :tabe term://' .s:compile_string. '<cr>i'
+
+" excute already compiled binary
+exec 'nnoremap <buffer> '.g:execute_map.' :tabe term://'.s:outfile.' <cr>i'
