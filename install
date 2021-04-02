@@ -14,6 +14,7 @@ CONFIG = {
         'bin': '$HOME/.bin',
         'themes': '$HOME/.themes',
         'icons': '$HOME/.icons',
+        'vifm': '$HOME/.config/vifm',
         }
 
 ignore_files = [
