@@ -11,7 +11,7 @@ if &filetype ==# 'c'
 	let s:cxx_compiler_flags = "-g".
 			\ " -fstack-clash-protection" .
 			\ " -D_FORTIFY_SOURCE=2".
-			 " -D GLIBCXX_DEBUG".
+			\ " -D GLIBCXX_DEBUG".
 			\ " -fsanitize=address".
 			\ " -Wall".
 			\ " -O0 "
