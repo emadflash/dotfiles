@@ -1,3 +1,4 @@
+set tabstop=3
 set relativenumber
 
 let mapleader="\<Space>"
@@ -152,7 +153,6 @@ let g:execute_map = ',x'
 
 " ale
 let g:ale_fix_on_save = 0
-let g:ale_linters = {'c': ['cpplint'], 'cpp' : ['cpplint']}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines',],
 \}

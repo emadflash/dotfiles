@@ -1,3 +1,9 @@
+let g:ale_linters = {
+		  \'c': ['cpplint'], 
+		  \'cpp' : ['cpplint']
+		  \}
+
+
 let s:infile = expand('%:p')
 let s:outfile = expand('%:p:r') 
 
@@ -5,14 +11,18 @@ if &filetype ==# 'c'
 	let s:cxx_compiler_flags = "-g".
 			\ " -fstack-clash-protection" .
 			\ " -D_FORTIFY_SOURCE=2".
-			\ " -D GLIBCXX_DEBUG".
-			\ " -Wall -O1 "
+			 " -D GLIBCXX_DEBUG".
+			\ " -fsanitize=address".
+			\ " -Wall".
+			\ " -O0 "
 	let s:compiler = "gcc"
 elseif &filetype ==# 'cpp'
 	let s:cxx_compiler_flags = "-g".
 			\ " -std=c++1z".
 			\ " -D GLIBCXX_DEBUG".
-			\ " -Wall -O1 "
+			\ " -fsanitize=address".
+			\ " -Wall".
+			\ " -O0 "
 	let s:compiler = "g++"
 endif
 
