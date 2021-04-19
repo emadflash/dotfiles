@@ -1,4 +1,6 @@
-set tabstop=3
+set expandtab
+set shiftwidth=4
+set tabstop=2
 set relativenumber
 
 let mapleader="\<Space>"
