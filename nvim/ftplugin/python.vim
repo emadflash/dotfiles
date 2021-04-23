@@ -23,7 +23,7 @@ nnoremap <buffer> ,h :!python3 -m radon hal %<CR>
 
 " debugging with pdb
 if exists("g:debugg_map")
-	exec 'nnoremap <buffer> '.g:debugg_map.' :vsplit term://bash -c ''python3 %''<cr><c-w>L A'
+	exec 'nnoremap <buffer> '.g:debugg_map.' :tabe term://python3 %<cr>A'
 else
-	nnoremap <buffer> ,d :vsplit term://bash -c 'python3 %'<cr><c-w>L A
+	nnoremap <buffer> ,d :tabe term://python3 %<cr>A
 endif
