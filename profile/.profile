@@ -33,6 +33,3 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
-
-# tty 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

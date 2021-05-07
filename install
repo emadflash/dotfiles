@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
+
 import os
 import shutil
 
 usr_home = os.environ["HOME"]
 CONFIG = {
-        'nvim': '$HOME/.config/nvim',
-        'bash': '$HOME',
-        'tmux': '$HOME',
-        'alacritty': '$HOME/.config/alacritty',
-        'zathura': '$HOME/.config/zathura',
-        'qtile': '$HOME/.config/qtile',
-        'xmonad': '$HOME/.xmonad',
-        'bin': '$HOME/.bin',
-        'themes': '$HOME/.themes',
-        'icons': '$HOME/.icons',
-        'vifm': '$HOME/.config/vifm',
-        }
+    "nvim": "$HOME/.config/nvim",
+    "bash": "$HOME",
+    "tmux": "$HOME",
+    "profile": "$HOME",
+    "alacritty": "$HOME/.config/alacritty",
+    "zathura": "$HOME/.config/zathura",
+    "qtile": "$HOME/.config/qtile",
+    "xmonad": "$HOME/.xmonad",
+    "bin": "$HOME/.bin",
+    "themes": "$HOME/.themes",
+    "icons": "$HOME/.icons",
+    "vifm": "$HOME/.config/vifm",
+}
 
 ignore_files = [
-        __file__.split('/')[-1],
-        ".git",
-        ".gitignore",
-        "README.md",
-        "install.sh",
-        ]
+    __file__.split("/")[-1],
+    ".git",
+    ".gitignore",
+    "README.md",
+    "install.sh",
+]
 
 
 config = CONFIG.keys()
@@ -41,13 +43,18 @@ def symlink(src, dest):
         if readlink == src:
             print("[*] Already linked {} with {}".format(src, dest))
         else:
-            if input("[+] Delete already linked {} with {} [y/N] ".format(src, readlink)) == 'Y':
+            if (
+                input(
+                    "[+] Delete already linked {} with {} [y/N] ".format(src, readlink)
+                )
+                == "Y"
+            ):
                 os.unlink(dest)
                 os.symlink(src, dest)
                 print("[*] linked {} with {}".format(src, dest))
     else:
         if os.path.exists(dest):
-            if input("[+] Delete {} [y/N] ".format(dest)) == 'Y':
+            if input("[+] Delete {} [y/N] ".format(dest)) == "Y":
                 if os.path.isdir(dest):
                     shutil.rmtree(dest, ignore_errors=True)
                 else:
@@ -59,20 +66,21 @@ def symlink(src, dest):
             print("[*] linked {} with {}".format(src, dest))
 
 
-if __name__ == '__main__':
+def main() -> None:
     print("[*] symlinking ...")
     for src in listdir:
         dest = link_map.get(src)
-        if dest is None:
-            sym_to_path = usr_home + '/' + src
-        else:
-            sym_to_path = link_map.get(src)
-        full_src_path = os.getcwd() + '/' + src
+        sym_to_path = link_map.get(src)
+        full_src_path = os.getcwd() + "/" + src
         if sym_to_path == usr_home:
             for x in os.listdir(full_src_path):
-                src = full_src_path + '/' + x
-                dest = sym_to_path + '/' + x
+                src = full_src_path + "/" + x
+                dest = sym_to_path + "/" + x
                 symlink(src, dest)
         else:
             symlink(full_src_path, sym_to_path)
     print("[*] (done)")
+
+
+if __name__ == "__main__":
+    main()
