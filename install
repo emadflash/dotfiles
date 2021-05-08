@@ -34,7 +34,7 @@ link_map = dict(zip(config, map_location))
 listdir = filter(lambda x: x not in ignore_files, os.listdir("."))
 
 
-def symlink(src, dest):
+def symlink(src, dest) -> None:
     try:
         readlink = os.readlink(dest)
     except (FileNotFoundError, OSError):
