@@ -1,0 +1,8 @@
+zsh_initialize_bindkey() {
+    bindkey -e
+    bindkey '^?' backward-delete-char
+    bindkey '^h' backward-delete-char
+    bindkey '^w' backward-kill-word
+    bindkey '^p' history-search-backward
+    bindkey '^n' history-search-forward
+}

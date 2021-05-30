@@ -1,0 +1,5 @@
+autoload -Uz vcs_info
+
+prompt_set_prefix() {
+    printf "%s@%s" $(whoami) $(hostname)
+}

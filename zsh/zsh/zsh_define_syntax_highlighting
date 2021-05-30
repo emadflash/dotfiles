@@ -1,0 +1,7 @@
+zsh_syntax_highlighting_file="$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 
+
+zsh_define_syntax_highlighting() {
+    if [[ -f "${zsh_syntax_highlighting_file}" ]]; then
+        source "${zsh_syntax_highlighting_file}"  
+    fi
+}

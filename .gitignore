@@ -15,3 +15,5 @@ xmonad/prompt-history
 vifm/scripts/
 vifm/vifm-help.txt
 vifm/vifminfo.json
+
+zsh/.zcompdump

@@ -7,6 +7,7 @@ usr_home = os.environ["HOME"]
 CONFIG = {
     "nvim": "$HOME/.config/nvim",
     "bash": "$HOME",
+    "zsh": "$HOME/.config/zsh",
     "tmux": "$HOME",
     "profile": "$HOME",
     "alacritty": "$HOME/.config/alacritty",
