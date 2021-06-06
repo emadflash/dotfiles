@@ -4,7 +4,6 @@ autoload -Uk zsh_initialize_history
 autoload -Uk zsh_initialize_bindkey
 autoload -Uk zsh_initialize_menuselect
 autoload -Uk zsh_initialize_ls_colors
-autoload -Uk zsh_define_syntax_highlighting
 autoload -Uk prompt_set_prefix
 autoload -Uk prompt_set_cwd
 autoload -Uk prompt_set_suffix
