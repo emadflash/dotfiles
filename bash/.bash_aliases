@@ -1,3 +1,4 @@
+alias nvim='nvim -u ~/.config/nvim/init.vim'
 alias vi='nvim'
 alias vim='nvim'
 alias r="source ~/.bashrc"
@@ -25,6 +26,4 @@ alias \
 	gs="git status" \
 	gl="git log" \
 	gll="git log --all" \
-	gb="git branch" \
-	gc="git checkout" \
-	gst="git stash" \
+	gc="git commit" \

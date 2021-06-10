@@ -1,0 +1,40 @@
+zsh_define_alias() {
+    zsh_define_basic_alias
+    zsh_define_ls_alias
+    zsh_define_cd_alias
+    zsh_define_vim_alias
+
+}
+
+zsh_define_basic_alias() {
+    alias r="source ~/.bashrc"
+    alias rm="rm -iv"
+    alias mv="mv -iv"
+    alias df="df -h"
+}
+
+zsh_define_ls_alias() {
+    alias \
+      ls='ls --color=auto' \
+      l='ls -lAFh'  \
+      la='ls -lFh' \
+      lr='ls -tRFh' \
+      lt='ls -ltFh' \
+      ll='ls -l' \
+      ldot='ls -ld .*' \
+      lS='ls -1FSsh' \
+      lart='ls -1Fcart' \
+      lrt='ls -1Fcrt'
+}
+
+zsh_define_cd_alias() {
+    alias ..="cd .."
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
+}
+
+zsh_define_vim_alias() {
+    alias nvim='nvim -u ~/.config/nvim/init.vim'
+    alias vi='nvim'
+    alias vim='nvim'
+}

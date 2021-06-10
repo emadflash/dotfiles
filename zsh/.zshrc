@@ -7,6 +7,7 @@ autoload -Uk zsh_initialize_ls_colors
 autoload -Uk prompt_set_prefix
 autoload -Uk prompt_set_cwd
 autoload -Uk prompt_set_suffix
+autoload -Uk zsh_define_alias
 
 setopt autocd
 setopt chase_dots
@@ -20,6 +21,7 @@ zsh_initialize_history
 zsh_initialize_bindkey
 zsh_initialize_menuselect
 zsh_initialize_ls_colors
+zsh_define_alias
 
 # set prompt prefix
 PROMPT="%B%F{green}$(prompt_set_prefix)%b"
@@ -32,5 +34,3 @@ PROMPT="${PROMPT} %B%F{blue}$(prompt_set_cwd)%b"
 
 # terminator
 PROMPT="${PROMPT} %B$%b %F{grey}"
-
-source "$HOME/.bash_aliases"
