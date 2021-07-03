@@ -1,0 +1,7 @@
+zsh_initialize_git() {
+    zsh_initialize_git_alias
+}
+
+zsh_initialize_git_alias() {
+    alias gs='git status'
+}

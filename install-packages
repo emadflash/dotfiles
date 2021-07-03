@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+set -e
+set -o pipefail
+
+declare -a packages
+packages=(
+    zsh
+    neovim
+    ncdu
+    tmux
+    ripgrep
+    htop
+    fzf
+)
+
+if [[ ! -f "$HOME/.nix-profile/bin/nix-env" ]]; then
+    printf "missing: nix-env aborting\n"
+    exit 1
+fi
+
+install_packages() {
+    for package in "${packages[@]}"; do
+        nix-env -iA "nixpkgs.${package}"
+    done
+}
+
+install_packages

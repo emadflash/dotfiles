@@ -2,6 +2,7 @@
 
 import os
 import shutil
+from typing import List, TypedDict
 
 usr_home = os.environ["HOME"]
 CONFIG = {
@@ -15,27 +16,20 @@ CONFIG = {
     "qtile": "$HOME/.config/qtile",
     "xmonad": "$HOME/.xmonad",
     "bin": "$HOME/.bin",
-    "themes": "$HOME/.themes",
-    "icons": "$HOME/.icons",
     "vifm": "$HOME/.config/vifm",
 }
-
-ignore_files = [
-    __file__.split("/")[-1],
-    ".git",
-    ".gitignore",
-    "README.md",
-    "install.sh",
-]
-
 
 config = CONFIG.keys()
 map_location = list(map(lambda x: x.replace("$HOME", usr_home), CONFIG.values()))
 link_map = dict(zip(config, map_location))
-listdir = filter(lambda x: x not in ignore_files, os.listdir("."))
 
 
-def symlink(src, dest) -> None:
+class source_destination_pair(TypedDict):
+    src: str
+    dest: str
+
+
+def symlink(src: str, dest: str) -> None:
     try:
         readlink = os.readlink(dest)
     except (FileNotFoundError, OSError):
@@ -67,19 +61,26 @@ def symlink(src, dest) -> None:
             print("[*] linked {} with {}".format(src, dest))
 
 
+def get_map_for_link_in_home_dir(src, dest) -> List[source_destination_pair]:
+    return_list = []
+    for x in os.listdir(src):
+        _tmp_map = {}
+        _tmp_map["src"] = src + "/" + x
+        _tmp_map["dest"] = dest + "/" + x
+        return_list.append(_tmp_map)
+    return return_list
+
+
 def main() -> None:
     print("[*] symlinking ...")
-    for src in listdir:
-        dest = link_map.get(src)
-        sym_to_path = link_map.get(src)
+    for (src, dest) in link_map.items():
         full_src_path = os.getcwd() + "/" + src
-        if sym_to_path == usr_home:
-            for x in os.listdir(full_src_path):
-                src = full_src_path + "/" + x
-                dest = sym_to_path + "/" + x
-                symlink(src, dest)
+        if dest == usr_home:
+            for _map in get_map_for_link_in_home_dir(full_src_path, dest):
+                _src, _dest = _map.values()
+                symlink(_src, _dest)
         else:
-            symlink(full_src_path, sym_to_path)
+            symlink(full_src_path, dest)
     print("[*] (done)")
 
 

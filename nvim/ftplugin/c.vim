@@ -18,7 +18,7 @@ if &filetype ==# 'c'
 	let s:compiler = "gcc"
 elseif &filetype ==# 'cpp'
 	let s:cxx_compiler_flags = "-g".
-			\ " -std=c++1z".
+			\ " -std=c++2a".
 			\ " -D GLIBCXX_DEBUG".
 			\ " -fsanitize=address".
 			\ " -Wall".

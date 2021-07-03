@@ -7,7 +7,7 @@ zsh_define_alias() {
 }
 
 zsh_define_basic_alias() {
-    alias r="source ~/.bashrc"
+    alias r="source ~/.config/zsh/.zshrc"
     alias rm="rm -iv"
     alias mv="mv -iv"
     alias df="df -h"
