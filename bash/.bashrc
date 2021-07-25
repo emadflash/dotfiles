@@ -9,7 +9,7 @@ set nobeep
 stty -ixon
 
 
-shopt -s autocd dirspell direxpand cdspell
+shopt -s autocd dirspell cdspell
 
 
 HISTSIZE=1000

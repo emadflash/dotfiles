@@ -1,0 +1,10 @@
+prompt_set_suffix() {
+    printf "%s" "$prompt_git_branch"
+}
+
+prompt_git_branch() {
+    is_git_dir=$(git rev-parse --is-inside-work-tree)
+    if [[ "$is_git_dir" ]]; then
+        printf "%s" $(git branch --show-current)
+    fi
+}

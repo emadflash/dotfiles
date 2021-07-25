@@ -57,11 +57,15 @@ class DiskU(base.ThreadedPollText):
     def poll(self):
         hdd = psutil.disk_usage(self.path)
         val = {}
-        val["DiskTotal"] = hdd.total / (2**30)
-        val["DiskUsed"] = hdd.used / (2**30)
-        val["DiskFree"] = hdd.free / (2**30)
-        if self.space_type == 'used':
-            val["DiskPercent"] = str(round((val['DiskUsed'] / val['DiskTotal']) * 100)) + "%"
-        elif self.space_type == 'free':
-            val["DiskPercent"] = str(round((val['DiskFree'] / val['DiskTotal']) * 100)) + "%"
+        val["DiskTotal"] = hdd.total / (2 ** 30)
+        val["DiskUsed"] = hdd.used / (2 ** 30)
+        val["DiskFree"] = hdd.free / (2 ** 30)
+        if self.space_type == "used":
+            val["DiskPercent"] = (
+                str(round((val["DiskUsed"] / val["DiskTotal"]) * 100)) + "%"
+            )
+        elif self.space_type == "free":
+            val["DiskPercent"] = (
+                str(round((val["DiskFree"] / val["DiskTotal"]) * 100)) + "%"
+            )
         return self.format.format(**val)

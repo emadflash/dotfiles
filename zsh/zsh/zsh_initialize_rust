@@ -1,0 +1,10 @@
+zsh_initialize_rust() {
+    rust_source_env
+}
+
+rust_source_env() {
+    rust_env="$HOME/.cargo/env"
+    if [[ -f "${rust_env}" ]]; then
+        . "${rust_env}"
+    fi
+}

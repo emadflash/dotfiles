@@ -1,0 +1,7 @@
+zsh_initialize_fzf() {
+    fzf_initialize_exports
+}
+
+fzf_initialize_exports() {
+    export FZF_DEFAULT_OPTS='--color=16'  
+}

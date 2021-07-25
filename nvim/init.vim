@@ -26,8 +26,9 @@ Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-titlecase'
 Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'szw/vim-maximizer'
 Plug 'preservim/nerdcommenter'
 Plug 'dense-analysis/ale'
@@ -42,31 +43,16 @@ endfunction
 
 
 " Netrw
-let g:netrw_liststyle = 4
+let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
 
 " fzf
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-nnoremap <silent> <Leader>b :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
-
+nmap <c-p> :FZF<cr>
+nmap <Leader>l :Lines<cr>
+nmap <Leader>b :Buffers<cr>
 
 " kill buffer
 nnoremap <Leader>wd :bd<CR>
@@ -110,30 +96,9 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 
 " terminal
-" https://www.reddit.com/r/vim/comments/8n5bzs/using_neovim_is_there_a_way_to_display_a_terminal/
-let g:term_buf = 0
-let g:term_win = 0
-function! TermToggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-            set signcolumn=no
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
-
-nnoremap <A-t> :call TermToggle(12)<CR>
-inoremap <A-t> <Esc>:call TermToggle(12)<CR>
-tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+nmap <A-j> :call terminal#TermToggle(12)<CR>
+inoremap <A-j> <Esc>:call terminal#TermToggle(12)<CR>
+tnoremap <A-j> <C-\><C-n>:call terminal#TermToggle(12)<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " maximize toggle
@@ -141,13 +106,10 @@ nnoremap <silent><C-o> :MaximizerToggle<cr>
 vnoremap <silent><C-o> :MaximizerToggle<cr>gv
 
 " vim-fugitive
-nnoremap =s :G<cr>
-nnoremap =l :G log<cr>
-nnoremap =g :G status<cr>
-nnoremap =c :Gcommit<cr>
-
-" ctrlp
-let g:ctrlp_map = '<c-p>'
+nnoremap =s :Git<cr>
+nnoremap =l :Git log<cr>
+nnoremap =g :Git status<cr>
+nnoremap =c :Git commit<cr>
 
 let g:debugg_map = ',d'
 let g:compile_map = ',z'
@@ -165,3 +127,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" HACK(madflash): load changes made to solarized colorscheme.
+autocmd VimEnter * :source ~/.config/nvim/colors/scheme.vim
