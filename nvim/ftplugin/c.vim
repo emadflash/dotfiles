@@ -14,6 +14,7 @@ if &filetype ==# 'c'
 			\ " -D GLIBCXX_DEBUG".
 			\ " -fsanitize=address".
 			\ " -Wall".
+			\ " -Wconversion".
 			\ " -O0 "
 	let s:compiler = "gcc"
 elseif &filetype ==# 'cpp'
@@ -22,12 +23,12 @@ elseif &filetype ==# 'cpp'
 			\ " -D GLIBCXX_DEBUG".
 			\ " -fsanitize=address".
 			\ " -Wall".
+			\ " -Wconversion".
 			\ " -O0 "
 	let s:compiler = "g++"
 endif
 
 let s:compile_string = s:compiler. ' ' .s:cxx_compiler_flags. s:infile. ' -o' .s:outfile
-
 
 " compile and execute it directly
 exec 'nnoremap <buffer> ,c :!' .s:compile_string. ' && ' .s:outfile. '<cr>'

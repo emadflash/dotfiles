@@ -30,10 +30,11 @@ zsh_initialize_git
 zsh_define_alias
 
 # set prompt prefix
-PROMPT="%F{grey}$(prompt_set_prefix)"
+#PROMPT="%F{grey}$(prompt_set_prefix)"
 
 # set prompt cwd
-PROMPT="${PROMPT} %F{green}$(prompt_set_cwd)"
+#PROMPT="${PROMPT} %F{green}$(prompt_set_cwd)"
+PROMPT="%F{green}$(prompt_set_cwd)"
 
 # TODO(madflash): set prompt suffix
 # PROMPT="${PROMPT} %B%F{red}$(prompt_set_suffix)%b"

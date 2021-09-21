@@ -31,6 +31,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'szw/vim-maximizer'
 Plug 'preservim/nerdcommenter'
+Plug 'SirVer/ultisnips'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -41,18 +42,17 @@ function! Chomp(str)
   return substitute(a:str, '\n$', '', '')
 endfunction
 
-
 " Netrw
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-
-" fzf
+" FZF
 nmap <c-p> :FZF<cr>
 nmap <Leader>l :Lines<cr>
-nmap <Leader>b :Buffers<cr>
+"nmap <Leader>b :Buffers<cr>
+nmap <Leader>b :Windows<cr>
 
 " kill buffer
 nnoremap <Leader>wd :bd<CR>
@@ -78,6 +78,10 @@ noremap H ^
 noremap L $
 nnoremap Y y$
 
+" tabs
+nmap <A-n> :tabn<cr>
+nmap <A-p> :tabp<cr>
+
 " files
 nnoremap <leader>e :Ex .<cr>
 
@@ -93,7 +97,6 @@ nnoremap <leader>ws :split<cr>
 
 " replace highlighted text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
 
 " terminal
 nmap <A-j> :call terminal#TermToggle(12)<CR>
@@ -121,8 +124,7 @@ let g:ale_fixers = {
 \ '*': ['remove_trailing_lines',],
 \}
 
-
-"" GoTo code navigation.
+" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -130,3 +132,9 @@ nmap <silent> gr <Plug>(coc-references)
 
 " HACK(madflash): load changes made to solarized colorscheme.
 autocmd VimEnter * :source ~/.config/nvim/colors/scheme.vim
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/snips']
