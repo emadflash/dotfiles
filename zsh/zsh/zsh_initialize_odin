@@ -1,0 +1,9 @@
+zsh_initialize_odin() {
+    odin_exports
+}
+
+odin_exports() {
+    if [[ -d "${HOME}/opt/odin" ]]; then
+        export PATH="$PATH:${HOME}/opt/odin"
+    fi
+}

@@ -8,9 +8,7 @@
 set nobeep
 stty -ixon
 
-
 shopt -s autocd dirspell cdspell
-
 
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -54,3 +52,7 @@ bind '"\e[1;5D": backward-word'
 # load aliases & functions
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 [[ -f ~/.bash_functions ]] && source ~/.bash_functions
+
+
+# source 'autojump'
+[[ -f /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh

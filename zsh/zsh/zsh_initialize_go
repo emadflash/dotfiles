@@ -1,0 +1,10 @@
+zsh_initialize_go() {
+    go_exports
+}
+
+go_exports() {
+    if [[ -d "$HOME/opt/go" ]]; then
+        export GOPATH="$HOME/opt/go"
+        export PATH="$PATH:${GOPATH}/bin"
+    fi
+}

@@ -16,14 +16,14 @@ snippet sl
 $2
 endsnippet
 
-snippet ss
+snippet ss "section"
 /////////////////////////////////////////////////
 // $1
 
 $2
 endsnippet
 
-snippet sm
+snippet sm "smaller section"
 ////////////////////////////////
 // ~ $1
 
@@ -38,27 +38,22 @@ snippet cn
 // CLEAN(madflash) - $1
 endsnippet
 
-snippet inc
-#include <$1>
-$2
-endsnippet
+snippet bt "test boilerplate"
+#[cfg(test)]
+mod tests {
+// Note this useful idiom: importing names from outer (for mod tests) scope.
+use super::*;
 
-snippet ifn
-#ifndef $1
-#define $1
-endsnippet
+#[test]
+fn test_add() {
+		assert_eq!(add(1, 2), 3);
+}
 
-snippet def
-#define $1
-endsnippet
-
-snippet end
-#endif $1
-endsnippet
-
-snippet fmain
-int main(int argc, char* argv[])
-{
-		return 0;
+#[test]
+fn test_bad_add() {
+		// This assert would fire and test will fail.
+		// Please note, that private functions can be tested too!
+		assert_eq!(bad_add(1, 2), 3);
+}
 }
 endsnippet

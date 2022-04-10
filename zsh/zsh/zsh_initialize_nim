@@ -1,0 +1,9 @@
+zsh_initialize_nim() {
+    nim_exports
+}
+
+nim_exports() {
+    if [[ -d "${HOME}/.nimble/bin" ]]; then
+        export PATH=/home/yds/.nimble/bin:$PATH
+    fi
+}
