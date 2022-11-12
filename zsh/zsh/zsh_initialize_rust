@@ -1,5 +1,10 @@
 zsh_initialize_rust() {
     rust_source_env
+    rust_alias
+}
+
+rust_alias() {
+    alias ca='cargo'
 }
 
 rust_source_env() {

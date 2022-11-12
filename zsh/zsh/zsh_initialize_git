@@ -5,4 +5,5 @@ zsh_initialize_git() {
 zsh_initialize_git_alias() {
     alias gs='git status'
     alias wip='git add -u && git commit -m "wip"'
+    alias gc='git checkout '
 }

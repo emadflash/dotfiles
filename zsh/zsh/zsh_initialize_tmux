@@ -1,0 +1,7 @@
+zsh_initialize_tmux() {
+    tmux_alias
+}
+
+tmux_alias() {
+    alias tmux='tmux -u'
+}

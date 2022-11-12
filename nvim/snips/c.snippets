@@ -1,6 +1,7 @@
 snippet cb
-// --------------------------------------------------------------------------------------------
-$1
+// --------------------------------------------------------------------------
+//                          - $1 -
+// --------------------------------------------------------------------------
 endsnippet
 
 snippet sl
@@ -16,14 +17,7 @@ snippet sl
 $2
 endsnippet
 
-snippet ss
-/////////////////////////////////////////////////
-// $1
-
-$2
-endsnippet
-
-snippet sm
+snippet sm "smaller section"
 ////////////////////////////////
 // ~ $1
 
@@ -35,7 +29,7 @@ snippet nn
 endsnippet
 
 snippet cn
-// CLEAN(madflash) - $1
+// CLEAN_UP(madflash) - $1
 endsnippet
 
 snippet inc
@@ -56,9 +50,16 @@ snippet end
 #endif $1
 endsnippet
 
-snippet fmain
-int main(int argc, char* argv[])
-{
-		return 0;
+snippet bmain
+int main() {
+    $1
+    return 0;
+}
+endsnippet
+
+snippet bmain2
+int main(int argc, char* argv[]) {
+    $1
+    return 0;
 }
 endsnippet

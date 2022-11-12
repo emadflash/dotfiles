@@ -23,4 +23,4 @@ nmap <buffer> ,h :!python3 -m radon hal %<CR>
 
 "
 " Debugging
-exec 'nmap <buffer> '.s:debugg_map.' :tabe term://python3 %<cr>A'
+exec 'nmap <buffer> '.s:debug_map.' :tabe term://python3 %<cr>A'

@@ -3,7 +3,6 @@ zsh_define_alias() {
     zsh_define_ls_alias
     zsh_define_cd_alias
     zsh_define_vim_alias
-
 }
 
 zsh_define_basic_alias() {

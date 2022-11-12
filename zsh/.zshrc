@@ -1,4 +1,5 @@
 fpath=(~/.config/zsh/zsh "${fpath[@]}")
+
 autoload -U compinit
 autoload -Uk zsh_initialize_history
 autoload -Uk zsh_initialize_bindkey
@@ -11,6 +12,7 @@ autoload -Uk zsh_initialize_nim
 autoload -Uk zsh_initialize_fzf
 autoload -Uk zsh_initialize_git
 autoload -Uk zsh_initialize_autojump
+autoload -Uk zsh_initialize_tmux
 autoload -Uk prompt_set_prefix
 autoload -Uk prompt_set_cwd
 autoload -Uk prompt_set_suffix
@@ -35,7 +37,17 @@ zsh_initialize_nim
 zsh_initialize_fzf
 zsh_initialize_git
 zsh_initialize_autojump
+zsh_initialize_tmux
 zsh_define_alias
 
 PROMPT="%F{green}$(prompt_set_cwd)"
 PROMPT="${PROMPT}%B%F{grey}>%b %F{grey}"
+
+# Print current branch on right prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f'
+zstyle ':vcs_info:*' enable git
